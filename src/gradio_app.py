@@ -23,8 +23,15 @@ def _build_messages(
         messages.append({"role": "system", "content": system_prompt})
 
     if history:
-        for msg in history:
-            messages.append({"role": msg["role"], "content": msg["content"]})
+        for item in history:
+            if isinstance(item, dict):
+                messages.append({"role": item["role"], "content": item["content"]})
+            else:
+                user_turn, assistant_turn = item
+                if user_turn:
+                    messages.append({"role": "user", "content": user_turn})
+                if assistant_turn:
+                    messages.append({"role": "assistant", "content": assistant_turn})
 
     messages.append({"role": "user", "content": user_message})
     return messages
@@ -93,7 +100,6 @@ def build_demo() -> gr.Blocks:
 
         gr.ChatInterface(
             fn=generate_response,
-            type="messages",
             submit_btn="Отправить",
             additional_inputs=[
                 gr.Slider(
