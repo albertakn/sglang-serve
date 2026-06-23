@@ -9,7 +9,7 @@ RUN pip install --no-cache-dir uv
 WORKDIR /workspace
 
 COPY pyproject.toml ./
-RUN uv pip install --system --no-cache -r pyproject.toml
+RUN uv pip install --system --break-system-packages --no-cache -r pyproject.toml
 
 COPY . /workspace
 
