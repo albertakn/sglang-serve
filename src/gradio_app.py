@@ -6,7 +6,7 @@ import gradio as gr
 from openai import AsyncOpenAI
 
 
-SGLANG_BASE_URL = os.environ.get("SGLANG_BASE_URL", "http://localhost:30000/v1")
+SGLANG_BASE_URL = os.environ.get("SGLANG_BASE_URL", "http://localhost:6666/v1")
 SGLANG_MODEL = os.environ.get("SGLANG_MODEL", "Qwen/Qwen3-Next-80B-A3B-Instruct")
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "EMPTY")
 GRADIO_PORT = int(os.environ.get("GRADIO_PORT", "7860"))
